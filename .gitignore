@@ -2,6 +2,8 @@
 __pycache__/
 *.py[cod]
 *.log
+__pycache__/
+*.pyc
 
 # Virtual Environment
 venv/
@@ -28,3 +30,7 @@ scans/
 build/
 dist/
 
+# Cache / Output
+scan_cache/
+outputs/
+scans/

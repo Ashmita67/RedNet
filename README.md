@@ -1,30 +1,33 @@
-# RedNet - Penetration Testing System
+# 🛡️ RedNet - Automated Penetration Testing System
 
-RedNet is an automated penetration testing system designed to identify vulnerabilities in networks, servers, and web applications. It uses Bash-based tools under the hood and provides a simple Streamlit web interface for usability.
+RedNet is an automated network and web penetration testing system designed to identify vulnerabilities in networks, servers, and web applications. It uses Bash-based tools under the hood integrating with **Nessus** and provides a simple Streamlit web interface for usability.
 
-## Features
+---
 
-- Domain/IP scanning
-- Service and port detection
-- Vulnerability scanning (Nikto, Nmap, etc.)
-- Simple, user-friendly dashboard
-- Downloadable reports
+## 🚀 Features
 
-## Folder Structure
+- 🔍 **Automated Recon & Scanning**  
+  Input a domain and IP address; RedNet runs scanning scripts using tools like Nmap and Nikto.
 
-RedNet/
-│
-├── frontend/
-│ └── app.py # Streamlit dashboard
-├── scans/ # Output reports (ignored in Git)
-├── scripts/ # Bash scripts (will be added in Phase 2)
-├── README.md
-└── .gitignore
+- 📄 **Beautiful Streamlit Interface**  
+  Simple, interactive UI for launching scans and viewing results.
 
-## Getting Started
+- ⚠️ **High-Risk Port Detection**  
+  Highlights common vulnerable ports like FTP (21), Telnet (23), etc.
 
-1. Clone the repo
-2. Create virtual environment
-3. Run the Streamlit app:
-```bash
-streamlit run frontend/app.py
+- 📁 **Downloadable Report**  
+  Scan results saved to text files and available for download.
+
+- 🧩 **Modular Bash Scripts**  
+  Easy to extend or customize scanning logic in `scripts/scan.sh`.
+
+---
+
+## 📦 Tech Stack
+
+- **Frontend:** Python, Streamlit  
+- **Backend Scripts:** Bash (scan.sh, others)  
+- **OS Compatibility:** Linux, Windows (with Git Bash)  
+- **Optional:** Nessus integration for full-scale vulnerability assessment
+
+---
