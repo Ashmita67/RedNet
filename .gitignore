@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+*.log
+
+# Virtual Environment
+venv/
+.env
+
+# System Files
+.DS_Store
+Thumbs.db
+
+# IDEs and Editors
+.vscode/
+*.code-workspace
+
+# Jupyter
+.ipynb_checkpoints
+
+# Output folders
+outputs/
+scans/
+
+# Installers
+*.egg-info/
+.eggs/
+build/
+dist/
+
