@@ -4,14 +4,16 @@
 echo "Network Penetration Testing System"
 echo "==============================="
 
-# ---- User Input Validation ----
-read -p "Enter the target domain: " domain
+# ---- Accept Parameters from CLI ----
+domain="$1"
+ip="$2"
+
+# ---- Validation ----
 if [[ -z "$domain" ]]; then
     echo "[!] Domain cannot be empty. Exiting."
     exit 1
 fi
 
-read -p "Enter the target IP: " ip
 if [[ -z "$ip" ]]; then
     echo "[!] IP cannot be empty. Exiting."
     exit 1
@@ -76,21 +78,29 @@ wait
 
 echo "All parallel scans completed."
 
-# ---- Nessus Launch ----
+# ---- Launch Nessus ----
 echo "5. Starting Nessus..."
 sudo systemctl start nessusd
 sleep 5
 
-echo "Opening Nessus in browser at https://localhost:8834 ..."
-xdg-open https://localhost:8834 &
+# ---- Open Nessus in browser based on OS ----
+url="https://localhost:8834"
+
+echo "Opening Nessus in browser at $url ..."
+if command -v xdg-open > /dev/null; then
+    xdg-open "$url" &
+elif command -v open > /dev/null; then
+    open "$url" &
+elif command -v start > /dev/null; then
+    start "$url" &
+else
+    echo "Cannot auto-launch browser. Please open $url manually."
+fi
 
 # ---- Risk-Based Filtering Example ----
-echo "\nFiltering Nmap results for high-risk services (e.g., ftp, telnet, smb):"
+echo ""
+echo "Filtering Nmap results for high-risk services (e.g., ftp, telnet, smb):"
 grep -Ei "ftp|telnet|smb" "$cachedir/nmap_scan.txt" > "$cachedir/high_risk_ports.txt"
 echo "Filtered high-risk ports saved to $cachedir/high_risk_ports.txt"
-
-# ---- Asynchronous I/O Optimization Tip ----
-# Suggest using background file parsing with tail or grep &
-# Example: tail -n 100 nikto_scan.txt & or parallel parsing using xargs for multi-file input
 
 exit 0
